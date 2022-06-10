@@ -35,22 +35,22 @@ int	main(int argc, char *argv[])
 	if (errorcheck_and_prep_stack_a(argc, argv, a) == 1)
 		write(2, "Error\n", 6);
 	
-	int i = 0;
-	int size = argc - 1;
-	printf("first\n");
-	while(--argc)
-		printf("%i ", a[i++]);
-	printf("\n");
-	b[0] = 33;
-	b[1] = 34;
-	b[2] = 35;
-	r_rotate_a(a, size);
-	printf("second a\n");
-	argc = size;
-	i = 0;
-	while(argc--)
-		printf("%i ", a[i++]);
-	printf("\n");
+	// int i = 0;
+	// int size = argc - 1;
+	// printf("first\n");
+	// while(--argc)
+	// 	printf("%i ", a[i++]);
+	// printf("\n");
+	// b[0] = 33;
+	// b[1] = 34;
+	// b[2] = 35;
+	// r_rotate_a(a, size);
+	// printf("second a\n");
+	// argc = size;
+	// i = 0;
+	// while(argc--)
+	// 	printf("%i ", a[i++]);
+	// printf("\n");
 
 	return (0);
 }
