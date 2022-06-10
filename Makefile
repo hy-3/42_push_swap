@@ -4,8 +4,13 @@ CC = gcc
 # FLAGS = -fsanitize=address
 FT_PRINTF_PATH = util/ft_printf
 FT_PRINTF = util/ft_printf/libftprintf.a
+O = operation
 SRC = \
 		src/main.c \
+		src/$(O)/swap.c \
+		src/$(O)/push.c \
+		src/$(O)/rotate.c \
+		src/$(O)/reverse_rotate.c \
 		util/atoi.c
 OBJ = $(SRC:%.c=%.o)
 
