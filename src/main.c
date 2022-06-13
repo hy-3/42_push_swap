@@ -46,9 +46,9 @@ int	get_max_int(int *a, int size_a)
 
 int	main(int argc, char *argv[])
 {
-	int	a[100];
+	int	a[ARG_MAX];
 	int	size_a;
-	int	b[100];
+	int	b[ARG_MAX];
 	int	size_b;
 	int	max_int;
 
@@ -58,26 +58,33 @@ int	main(int argc, char *argv[])
 		write(2, "Error\n", 6);
 	size_a = argc - 1;
 	size_b = 0;
+	while (PORTION)
+
+	// move first 20% to stack B.
 	int	i = 0;
+	int tmp = 0;
 	max_int = get_max_int(a, size_a);
 	printf("max:%i\n", max_int);
 	while (i < size_a)
 	{
 		if (a[i] < max_int * ((double) PORTION / (double) 100))
 		{
+			tmp = a[i];
+			if (i < size_a / 2)
+				while (a[0] != tmp)
+					rotate_a(a, size_a);
+			else
+				while (a[0] != tmp)
+					r_rotate_a(a, size_a);
 			push_b(a, size_a, b, size_b);
 			size_a--;
 			size_b++;
-			if (i > size_a / 2)
-				while (a[0] != a[i])
-					rotate_a(a, size_a);
-			else
-				while (a[0] != a[i])
-					r_rotate_a(a, size_a);
 			i = 0;
 		}
 		i++;
 	}
+
+	// to Check.stack a & b.
 	int n = 0;
 	int size = argc - 1;
 	printf("a: \n");
