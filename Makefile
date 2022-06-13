@@ -1,7 +1,7 @@
 NAME = push_swap
 CC = gcc
 # FLAGS = -Wall -Wextra -Werror
-# FLAGS = -fsanitize=address
+FLAGS = -fsanitize=address
 FT_PRINTF_PATH = util/ft_printf
 FT_PRINTF = util/ft_printf/libftprintf.a
 O = operation

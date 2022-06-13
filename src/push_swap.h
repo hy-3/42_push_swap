@@ -7,6 +7,8 @@
 # include <unistd.h>
 # include <limits.h>
 
+# define PORTION 20
+
 typedef struct s_int_check
 {
 	int			is_int;
@@ -17,6 +19,7 @@ typedef struct s_int_check
 void		swap_a(int *a, int size);
 //	src/operation/push.c
 void		push_a(int *a, int size_a, int *b, int size_b);
+void		push_b(int *a, int size_a, int *b, int size_b);
 //	src/operation/rotate.c
 void		rotate_a(int *a, int size_a);
 //	src/operation/reverse_rotate.c

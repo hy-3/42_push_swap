@@ -25,16 +25,71 @@ int	errorcheck_and_prep_stack_a(int argc, char *argv[], int *a)
 	return (0);
 }
 
+int	get_max_int(int *a, int size_a)
+{
+	int	res;
+	int	i;
+
+	res = 0;
+	i = 0;
+	printf("size_a:%i\n", size_a);
+	while (i < size_a)
+	{
+		if (res < a[i])
+			res = a[i];
+		printf("res:%i\n", res);
+		
+		i++;
+	}
+	return (res);
+}
+
 int	main(int argc, char *argv[])
 {
-	int	a[ARG_MAX];
-	int	b[ARG_MAX];
+	int	a[100];
+	int	size_a;
+	int	b[100];
+	int	size_b;
+	int	max_int;
 
 	if (argc == 1)
 		return (0);
 	if (errorcheck_and_prep_stack_a(argc, argv, a) == 1)
 		write(2, "Error\n", 6);
-	
+	size_a = argc - 1;
+	size_b = 0;
+	int	i = 0;
+	max_int = get_max_int(a, size_a);
+	printf("max:%i\n", max_int);
+	while (i < size_a)
+	{
+		if (a[i] < max_int * ((double) PORTION / (double) 100))
+		{
+			push_b(a, size_a, b, size_b);
+			size_a--;
+			size_b++;
+			if (i > size_a / 2)
+				while (a[0] != a[i])
+					rotate_a(a, size_a);
+			else
+				while (a[0] != a[i])
+					r_rotate_a(a, size_a);
+			i = 0;
+		}
+		i++;
+	}
+	int n = 0;
+	int size = argc - 1;
+	printf("a: \n");
+	while(--argc)
+		printf("%i ", a[n++]);
+	printf("\n");
+	printf("b: \n");
+	argc = size;
+	n = 0;
+	while(argc--)
+		printf("%i ", b[n++]);
+	printf("\n");
 	// int i = 0;
 	// int size = argc - 1;
 	// printf("first\n");
