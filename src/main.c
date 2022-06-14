@@ -25,94 +25,133 @@ int	errorcheck_and_prep_stack_a(int argc, char *argv[], int *a)
 	return (0);
 }
 
-int	get_max_int(int *a, int size_a)
+int	get_max_int(int *s, int size)
 {
 	int	res;
 	int	i;
 
 	res = 0;
 	i = 0;
-	printf("size_a:%i\n", size_a);
-	while (i < size_a)
+	while (i < size)
 	{
-		if (res < a[i])
-			res = a[i];
-		printf("res:%i\n", res);
-		
+		if (res < s[i])
+			res = s[i];
 		i++;
 	}
 	return (res);
 }
 
-int	main(int argc, char *argv[])
+void	move_num_to_b(t_stack *stack, int range, int n)
 {
-	int	a[ARG_MAX];
-	int	size_a;
-	int	b[ARG_MAX];
-	int	size_b;
+	int	i;
+	int	tmp;
 	int	max_int;
 
-	if (argc == 1)
-		return (0);
-	if (errorcheck_and_prep_stack_a(argc, argv, a) == 1)
-		write(2, "Error\n", 6);
-	size_a = argc - 1;
-	size_b = 0;
-	while (PORTION)
-
-	// move first 20% to stack B.
-	int	i = 0;
-	int tmp = 0;
-	max_int = get_max_int(a, size_a);
-	printf("max:%i\n", max_int);
-	while (i < size_a)
+	printf("r:%d\n",range);
+	i = 0;
+	tmp = 0;
+	max_int = get_max_int(stack->a, stack->size_a);
+	while (i < stack->size_a)
 	{
-		if (a[i] < max_int * ((double) PORTION / (double) 100))
+		if (stack->a[i] <= range)
 		{
-			tmp = a[i];
-			if (i < size_a / 2)
-				while (a[0] != tmp)
-					rotate_a(a, size_a);
+			tmp = stack->a[i];
+			printf("tmp: %i\n", tmp);
+			if (i < stack->size_a / 2)
+				while (stack->a[0] != tmp)
+					rotate_a(stack->a, stack->size_a);
 			else
-				while (a[0] != tmp)
-					r_rotate_a(a, size_a);
-			push_b(a, size_a, b, size_b);
-			size_a--;
-			size_b++;
+				while (stack->a[0] != tmp)
+					r_rotate_a(stack->a, stack->size_a);
+			push_b(stack->a, stack->size_a, stack->b, stack->size_b);
+			stack->size_a--;
+			stack->size_b++;
+			if (n >= 3 && n % 2 != 0)
+				rotate_b(stack->b, stack->size_b);
 			i = 0;
+			continue ;
 		}
 		i++;
 	}
+}
+
+int	get_max_index(int	max_int, int *s, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (s[i] == max_int)
+			break ;
+		i++;
+	}
+	return (i);
+}
+
+void	move_back_to_a(t_stack *stack)
+{
+	int	max_int;
+	int	index;
+
+	while (stack->size_b > 0)
+	{
+		max_int = get_max_int(stack->b, stack->size_b);
+		index = get_max_index(max_int, stack->b, stack->size_b);
+		if (index < stack->size_b / 2)
+			while (stack->b[0] != max_int)
+				rotate_b(stack->b, stack->size_b);
+		else
+			while (stack->b[0] != max_int)
+				r_rotate_b(stack->b, stack->size_b);
+		push_a(stack->a, stack->size_a, stack->b, stack->size_b);
+		stack->size_a++;
+		stack->size_b--;
+	}
+}
+
+int	main(int argc, char *argv[])
+{
+	t_stack	stack;
+
+	if (argc == 1)
+		return (0);
+	if (errorcheck_and_prep_stack_a(argc, argv, stack.a) == 1)
+	{
+		write(2, "Error\n", 6);
+		return (1);
+	}
+	stack.size_a = argc - 1;
+	stack.size_b = 0;
+
+	int	range;
+	range = PORTION;
+	int max_int = get_max_int(stack.a, stack.size_a);
+	int n = 1;
+	while (range <= max_int)
+	{
+		move_num_to_b(&stack, range, n);
+		range += PORTION;
+		n++;
+	}
+	move_num_to_b(&stack, range, n);
+	printf("r:%d\n",range);
+
+	move_back_to_a(&stack);
 
 	// to Check.stack a & b.
-	int n = 0;
+	int w = 0;
 	int size = argc - 1;
 	printf("a: \n");
 	while(--argc)
-		printf("%i ", a[n++]);
+		printf("%i ", stack.a[w++]);
 	printf("\n");
 	printf("b: \n");
 	argc = size;
-	n = 0;
+	w = 0;
 	while(argc--)
-		printf("%i ", b[n++]);
+		printf("%i ", stack.b[w++]);
 	printf("\n");
-	// int i = 0;
-	// int size = argc - 1;
-	// printf("first\n");
-	// while(--argc)
-	// 	printf("%i ", a[i++]);
-	// printf("\n");
-	// b[0] = 33;
-	// b[1] = 34;
-	// b[2] = 35;
-	// r_rotate_a(a, size);
-	// printf("second a\n");
-	// argc = size;
-	// i = 0;
-	// while(argc--)
-	// 	printf("%i ", a[i++]);
-	// printf("\n");
 
 	return (0);
 }
