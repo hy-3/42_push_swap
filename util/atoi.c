@@ -11,7 +11,7 @@ int	is_over_int(t_int_check *check, int sign)
 	return (0);
 }
 
-t_int_check	*is_int_and_atoi(const char *str, t_int_check *check)
+void	is_int_and_atoi(const char *str, t_int_check *check)
 {
 	int	i;
 	int	sign;
@@ -32,10 +32,9 @@ t_int_check	*is_int_and_atoi(const char *str, t_int_check *check)
 	{
 		check->res = check->res * 10 + (str[i++] - '0');
 		if (is_over_int(check, sign) == 1)
-			return (check);
+			return ;
 	}
 	if (str[i] != '\0')
 		check->is_int = 0;
 	check->res *= sign;
-	return (check);
 }

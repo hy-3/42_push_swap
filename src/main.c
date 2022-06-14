@@ -1,27 +1,43 @@
 #include "push_swap.h"
 
-int	errorcheck_and_prep_stack_a(int argc, char *argv[], int *a)
+int	errorcheck_and_prep_stack_a(int argc, char *argv[], t_stack *stack)
 {
 	int			i;
 	int			k;
 	t_int_check	check;
+	char		**arg;
+	int			num;
+	int			j;
+	int			l;
 
 	i = 0;
+	j = 0;
 	while (--argc > 0)
 	{
-		is_int_and_atoi(argv[i + 1], &check);
-		if (check.is_int == 0)
-			return (1);
-		a[i] = (int) check.res;
-		k = 0;
-		while (k < i)
+		num = count_num_of_strings(argv[i + 1], ' ');
+		arg = ft_split(argv[i + 1], ' ');
+		l = 0;
+		while (num-- > 0)
 		{
-			if (a[k] == check.res)
+			is_int_and_atoi(arg[l], &check);
+			if (check.is_int == 0)
 				return (1);
-			k++;
+			stack->a[j] = (int) check.res;
+			k = 0;
+			while (k < j)
+			{
+				if (stack->a[k] == check.res)
+					return (1);
+				k++;
+			}
+			j++;
+			l++;
 		}
 		i++;
+		cust_free(arg);
+		free(arg);
 	}
+	stack->size_a = j;
 	return (0);
 }
 
@@ -47,7 +63,6 @@ void	move_num_to_b(t_stack *stack, int range, int n)
 	int	tmp;
 	int	max_int;
 
-	printf("r:%d\n",range);
 	i = 0;
 	tmp = 0;
 	max_int = get_max_int(stack->a, stack->size_a);
@@ -56,7 +71,6 @@ void	move_num_to_b(t_stack *stack, int range, int n)
 		if (stack->a[i] <= range)
 		{
 			tmp = stack->a[i];
-			printf("tmp: %i\n", tmp);
 			if (i < stack->size_a / 2)
 				while (stack->a[0] != tmp)
 					rotate_a(stack->a, stack->size_a);
@@ -116,12 +130,11 @@ int	main(int argc, char *argv[])
 
 	if (argc == 1)
 		return (0);
-	if (errorcheck_and_prep_stack_a(argc, argv, stack.a) == 1)
+	if (errorcheck_and_prep_stack_a(argc, argv, &stack) == 1)
 	{
 		write(2, "Error\n", 6);
 		return (1);
 	}
-	stack.size_a = argc - 1;
 	stack.size_b = 0;
 
 	int	range;
@@ -135,23 +148,22 @@ int	main(int argc, char *argv[])
 		n++;
 	}
 	move_num_to_b(&stack, range, n);
-	printf("r:%d\n",range);
 
 	move_back_to_a(&stack);
 
 	// to Check.stack a & b.
-	int w = 0;
-	int size = argc - 1;
-	printf("a: \n");
-	while(--argc)
-		printf("%i ", stack.a[w++]);
-	printf("\n");
-	printf("b: \n");
-	argc = size;
-	w = 0;
-	while(argc--)
-		printf("%i ", stack.b[w++]);
-	printf("\n");
+	// int w = 0;
+	// int size = argc - 1;
+	// ft_printf("a: \n");
+	// while(stack.size_a--)
+	// 	ft_printf("%i ", stack.a[w++]);
+	// ft_printf("\n");
+	// ft_printf("b: \n");
+	// argc = size;
+	// w = 0;
+	// while(stack.size_b--)
+	// 	ft_printf("%i ", stack.b[w++]);
+	// ft_printf("\n");
 
 	return (0);
 }

@@ -11,7 +11,8 @@ SRC = \
 		src/$(O)/push.c \
 		src/$(O)/rotate.c \
 		src/$(O)/reverse_rotate.c \
-		util/atoi.c
+		util/atoi.c \
+		util/str_split.c
 OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)

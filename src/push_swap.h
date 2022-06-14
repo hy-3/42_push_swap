@@ -1,11 +1,9 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-//TMP
-# include <stdio.h>
-
 # include <unistd.h>
 # include <limits.h>
+# include <stdlib.h>
 
 # define PORTION 20
 
@@ -35,6 +33,10 @@ void		rotate_b(int *b, int size_b);
 void	r_rotate_a(int *a, int size_a);
 void	r_rotate_b(int *b, int size_b);
 //	util/atoi.c
-t_int_check	*is_int_and_atoi(const char *str, t_int_check *check);
+void	is_int_and_atoi(const char *str, t_int_check *check);
+//	util/str_split.c
+char	**ft_split(char const *s, char c);
+int		count_num_of_strings(char const *s, char c);
+void	cust_free(char **res);
 
 #endif
