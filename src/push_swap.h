@@ -1,11 +1,15 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+
+//TODO delete
+#include <stdio.h>
+
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
 
-# define PORTION 20
+# define PORTION 100
 
 typedef struct s_int_check
 {
@@ -21,17 +25,23 @@ typedef struct s_stacks
 	int	size_b;
 }	t_stacks;
 
+typedef struct s_max
+{
+	int	num;
+	int	index;
+}	t_max;
+
 //	src/operation/swap.c
-void	swap_a(t_stacks *stacks);
+void	swap_a(int *a, int size_a);
 //	src/operation/push.c
-void	push_a(t_stacks *stacks);
-void	push_b(t_stacks *stacks);
+void	push_a(int *a, int size_a, int *b, int size_b);
+void	push_b(int *a, int size_a, int *b, int size_b);
 //	src/operation/rotate.c
-void	rotate_a(t_stacks *stacks);
-void	rotate_b(t_stacks *stacks);
+void	rotate_a(int *a, int size_a);
+void	rotate_b(int *b, int size_b);
 //	src/operation/reverse_rotate.c
-void	r_rotate_a(t_stacks *stacks);
-void	r_rotate_b(t_stacks *stacks);
+void	r_rotate_a(int *a, int size_a);
+void	r_rotate_b(int *b, int size_b);
 //	util/atoi.c
 void	is_int_and_atoi(const char *str, t_int_check *check);
 //	util/str_split.c
