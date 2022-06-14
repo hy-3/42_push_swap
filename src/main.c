@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	errorcheck_and_prep_stack_a(int argc, char *argv[], t_stack *stack)
+int	errorcheck_and_prep_stack_a(int argc, char *argv[], t_stacks *stacks)
 {
 	int			i;
 	int			k;
@@ -22,11 +22,11 @@ int	errorcheck_and_prep_stack_a(int argc, char *argv[], t_stack *stack)
 			is_int_and_atoi(arg[l], &check);
 			if (check.is_int == 0)
 				return (1);
-			stack->a[j] = (int) check.res;
+			stacks->a[j] = (int) check.res;
 			k = 0;
 			while (k < j)
 			{
-				if (stack->a[k] == check.res)
+				if (stacks->a[k] == check.res)
 					return (1);
 				k++;
 			}
@@ -37,11 +37,11 @@ int	errorcheck_and_prep_stack_a(int argc, char *argv[], t_stack *stack)
 		cust_free(arg);
 		free(arg);
 	}
-	stack->size_a = j;
+	stacks->size_a = j;
 	return (0);
 }
 
-int	get_max_int(int *s, int size)
+int	get_max_int(int *stack, int size)
 {
 	int	res;
 	int	i;
@@ -50,14 +50,14 @@ int	get_max_int(int *s, int size)
 	i = 0;
 	while (i < size)
 	{
-		if (res < s[i])
-			res = s[i];
+		if (res < stack[i])
+			res = stack[i];
 		i++;
 	}
 	return (res);
 }
 
-void	move_num_to_b(t_stack *stack, int range, int n)
+void	move_num_to_b(t_stacks *stacks, int range, int n)
 {
 	int	i;
 	int	tmp;
@@ -65,23 +65,21 @@ void	move_num_to_b(t_stack *stack, int range, int n)
 
 	i = 0;
 	tmp = 0;
-	max_int = get_max_int(stack->a, stack->size_a);
-	while (i < stack->size_a)
+	max_int = get_max_int(stacks->a, stacks->size_a);
+	while (i < stacks->size_a)
 	{
-		if (stack->a[i] <= range)
+		if (stacks->a[i] <= range)
 		{
-			tmp = stack->a[i];
-			if (i < stack->size_a / 2)
-				while (stack->a[0] != tmp)
-					rotate_a(stack->a, stack->size_a);
+			tmp = stacks->a[i];
+			if (i < stacks->size_a / 2)
+				while (stacks->a[0] != tmp)
+					rotate_a(stacks);
 			else
-				while (stack->a[0] != tmp)
-					r_rotate_a(stack->a, stack->size_a);
-			push_b(stack->a, stack->size_a, stack->b, stack->size_b);
-			stack->size_a--;
-			stack->size_b++;
+				while (stacks->a[0] != tmp)
+					r_rotate_a(stacks);
+			push_b(stacks);
 			if (n >= 3 && n % 2 != 0)
-				rotate_b(stack->b, stack->size_b);
+				rotate_b(stacks);
 			i = 0;
 			continue ;
 		}
@@ -89,7 +87,7 @@ void	move_num_to_b(t_stack *stack, int range, int n)
 	}
 }
 
-int	get_max_index(int	max_int, int *s, int size)
+int	get_max_index(int max_int, int *s, int size)
 {
 	int	i;
 
@@ -103,67 +101,63 @@ int	get_max_index(int	max_int, int *s, int size)
 	return (i);
 }
 
-void	move_back_to_a(t_stack *stack)
+void	move_back_to_a(t_stacks *stacks)
 {
 	int	max_int;
 	int	index;
 
-	while (stack->size_b > 0)
+	while (stacks->size_b > 0)
 	{
-		max_int = get_max_int(stack->b, stack->size_b);
-		index = get_max_index(max_int, stack->b, stack->size_b);
-		if (index < stack->size_b / 2)
-			while (stack->b[0] != max_int)
-				rotate_b(stack->b, stack->size_b);
+		max_int = get_max_int(stacks->b, stacks->size_b);
+		index = get_max_index(max_int, stacks->b, stacks->size_b);
+		if (index < stacks->size_b / 2)
+			while (stacks->b[0] != max_int)
+				rotate_b(stacks);
 		else
-			while (stack->b[0] != max_int)
-				r_rotate_b(stack->b, stack->size_b);
-		push_a(stack->a, stack->size_a, stack->b, stack->size_b);
-		stack->size_a++;
-		stack->size_b--;
+			while (stacks->b[0] != max_int)
+				r_rotate_b(stacks);
+		push_a(stacks);
 	}
 }
 
 int	main(int argc, char *argv[])
 {
-	t_stack	stack;
+	t_stacks	stacks;
 
 	if (argc == 1)
 		return (0);
-	if (errorcheck_and_prep_stack_a(argc, argv, &stack) == 1)
+	if (errorcheck_and_prep_stack_a(argc, argv, &stacks) == 1)
 	{
 		write(2, "Error\n", 6);
 		return (1);
 	}
-	stack.size_b = 0;
+	stacks.size_b = 0;
 
 	int	range;
 	range = PORTION;
-	int max_int = get_max_int(stack.a, stack.size_a);
+	int max_int = get_max_int(stacks.a, stacks.size_a);
 	int n = 1;
 	while (range <= max_int)
 	{
-		move_num_to_b(&stack, range, n);
+		move_num_to_b(&stacks, range, n);
 		range += PORTION;
 		n++;
 	}
-	move_num_to_b(&stack, range, n);
-
-	move_back_to_a(&stack);
-
-	// to Check.stack a & b.
-	// int w = 0;
-	// int size = argc - 1;
-	// ft_printf("a: \n");
-	// while(stack.size_a--)
-	// 	ft_printf("%i ", stack.a[w++]);
-	// ft_printf("\n");
-	// ft_printf("b: \n");
-	// argc = size;
-	// w = 0;
-	// while(stack.size_b--)
-	// 	ft_printf("%i ", stack.b[w++]);
-	// ft_printf("\n");
-
+	move_num_to_b(&stacks, range, n);
+	move_back_to_a(&stacks);
 	return (0);
 }
+
+// to Check.stack a & b.
+// int w = 0;
+// int size = argc - 1;
+// ft_printf("a: \n");
+// while(stack.size_a--)
+// 	ft_printf("%i ", stack.a[w++]);
+// ft_printf("\n");
+// ft_printf("b: \n");
+// argc = size;
+// w = 0;
+// while(stack.size_b--)
+// 	ft_printf("%i ", stack.b[w++]);
+// ft_printf("\n");
