@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hiyamamo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/15 13:21:22 by hiyamamo          #+#    #+#             */
+/*   Updated: 2022/06/15 13:21:23 by hiyamamo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../util/ft_printf/src/ft_printf.h"
 
 void	rotate_a(int *a, int size_a)
 {
-	int i;
+	int	i;
 	int	tmp;
 
 	i = 0;
@@ -18,7 +30,7 @@ void	rotate_a(int *a, int size_a)
 
 void	rotate_b(int *b, int size_b)
 {
-	int i;
+	int	i;
 	int	tmp;
 
 	i = 0;
@@ -34,7 +46,7 @@ void	rotate_b(int *b, int size_b)
 
 void	rotate_a_and_b(int *a, int size_a, int *b, int size_b)
 {
-	int i;
+	int	i;
 	int	tmp;
 
 	i = 0;

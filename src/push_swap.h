@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hiyamamo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/15 13:22:12 by hiyamamo          #+#    #+#             */
+/*   Updated: 2022/06/15 13:22:13 by hiyamamo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-
 
 //TODO delete
 #include <stdio.h>
@@ -8,8 +19,6 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
-
-# define PORTION 100
 
 typedef struct s_int_check
 {
@@ -31,6 +40,9 @@ typedef struct s_max
 	int	index;
 }	t_max;
 
+//	src/errorcheck.c
+int		check_duplicate(int j, t_stacks *stacks, t_int_check *check);
+int		errorcheck_and_prep_stack_a(int argc, char *argv[], t_stacks *stacks);
 //	src/operation/swap.c
 void	swap_a(int *a, int size_a);
 //	src/operation/push.c

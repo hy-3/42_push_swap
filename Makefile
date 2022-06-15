@@ -7,6 +7,7 @@ FT_PRINTF = util/ft_printf/libftprintf.a
 O = operation
 SRC = \
 		src/main.c \
+		src/errorcheck.c \
 		src/$(O)/swap.c \
 		src/$(O)/push.c \
 		src/$(O)/rotate.c \

@@ -1,48 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hiyamamo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/15 13:21:02 by hiyamamo          #+#    #+#             */
+/*   Updated: 2022/06/15 13:21:03 by hiyamamo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-
-int	check_duplicate(int	j, t_stacks *stacks, t_int_check *check)
-{
-	int	k;
-
-	k = 0;
-	while (k < j)
-	{
-		if (stacks->a[k] == check->res)
-			return (1);
-		k++;
-	}
-	return (0);
-}
-
-int	errorcheck_and_prep_stack_a(int argc, char *argv[], t_stacks *stacks)
-{
-	t_int_check	check;
-	char		**arg;
-	int			num;
-	int			i;
-	int			j;
-	int			l;
-
-	i = 0;
-	j = 0;
-	while (++i < argc)
-	{
-		num = count_num_of_strings(argv[i], ' ');
-		arg = ft_split(argv[i], ' ');
-		l = -1;
-		while (num-- > 0)
-		{
-			is_int_and_atoi(arg[++l], &check);
-			if (check.is_int == 0 || check_duplicate(j, stacks, &check) == 1)
-				return (1);
-			stacks->a[j++] = (int) check.res;
-		}
-		cust_free(arg);
-		free(arg);
-	}
-	stacks->size_a = j;
-	return (0);
-}
 
 void	get_max(int *stack, int size, t_max *max)
 {
@@ -68,7 +36,6 @@ void	move_to_b(t_stacks *stacks, int range, int n)
 	int		tmp;
 
 	i = 0;
-	tmp = 0;
 	while (i < stacks->size_a)
 	{
 		if (stacks->a[i] <= range)
@@ -86,9 +53,9 @@ void	move_to_b(t_stacks *stacks, int range, int n)
 			if (n >= 3 && n % 2 != 0)
 				rotate_b(stacks->b, stacks->size_b);
 			i = 0;
-			continue ;
 		}
-		i++;
+		else
+			i++;
 	}
 }
 
@@ -126,13 +93,13 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	stacks.size_b = 0;
-	range = PORTION;
 	get_max(stacks.a, stacks.size_a, &max);
+	range = max.num * 0.1;
 	n = 1;
 	while (range <= max.num)
 	{
 		move_to_b(&stacks, range, n);
-		range += PORTION;
+		range += max.num * 0.1;
 		n++;
 	}
 	move_to_b(&stacks, range, n);
