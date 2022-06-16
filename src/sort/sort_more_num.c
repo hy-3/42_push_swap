@@ -6,13 +6,13 @@
 /*   By: hiyamamo <hiyamamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 13:52:46 by hiyamamo          #+#    #+#             */
-/*   Updated: 2022/06/16 18:56:26 by hiyamamo         ###   ########.fr       */
+/*   Updated: 2022/06/16 19:59:40 by hiyamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	move_to_b(t_stacks *stacks, int range, int n)
+void	move_to_b(t_stacks *stacks, int range)
 {
 	int		i;
 	int		tmp;
@@ -30,13 +30,11 @@ void	move_to_b(t_stacks *stacks, int range, int n)
 			{
 				while (stacks->a[0] != tmp)
 				{
-					if (stacks->a[0] < range)
+					if (stacks->a[0] <= range)
 					{
 						push_b(stacks->a, stacks->size_a, stacks->b, stacks->size_b);
 						stacks->size_a--;
 						stacks->size_b++;
-						if (n >= 3 && n % 2 != 0)
-							rotate_b(stacks->b, stacks->size_b);
 					}
 					else
 						r_rotate_a(stacks->a, stacks->size_a);
@@ -45,8 +43,6 @@ void	move_to_b(t_stacks *stacks, int range, int n)
 			push_b(stacks->a, stacks->size_a, stacks->b, stacks->size_b);
 			stacks->size_a--;
 			stacks->size_b++;
-			if (n >= 3 && n % 2 != 0)
-				rotate_b(stacks->b, stacks->size_b);
 			i = 0;
 		}
 		else
@@ -103,21 +99,18 @@ void	move_back_to_a(t_stacks *stacks)
 void	sort_more_num(t_stacks *stacks, t_max *max)
 {
 	int	range;
-	int	n;
 
-	range = max->num * 0.1;
+	range = max->num * 0.09;
 	if (max->num < 10)
-		move_to_b(stacks, 10, 1);
+		move_to_b(stacks, 10);
 	else
 	{
-		n = 1;
 		while (range <= max->num)
 		{
-			move_to_b(stacks, range, n);
-			range += max->num * 0.1;
-			n++;
+			move_to_b(stacks, range);
+			range += max->num * 0.09;
 		}
-		move_to_b(stacks, range, n);
+		move_to_b(stacks, range);
 	}
 	move_back_to_a(stacks);
 }
