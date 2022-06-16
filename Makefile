@@ -7,6 +7,8 @@ O = operation
 SRC = \
 		src/main.c \
 		src/check.c \
+		src/sort/sort_few_num.c \
+		src/sort/sort_more_num.c \
 		src/$(O)/swap.c \
 		src/$(O)/push.c \
 		src/$(O)/rotate.c \
