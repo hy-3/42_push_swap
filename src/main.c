@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hiyamamo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hiyamamo <hiyamamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 13:21:02 by hiyamamo          #+#    #+#             */
-/*   Updated: 2022/06/15 13:21:03 by hiyamamo         ###   ########.fr       */
+/*   Updated: 2022/06/16 12:41:16 by hiyamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,15 +106,3 @@ int	main(int argc, char *argv[])
 	move_back_to_a(&stacks);
 	return (0);
 }
-
-	// // to Check.stack a & b.
-	// int w = 0;
-	// printf("a: \n");
-	// while(stacks.size_a--)
-	// 	printf("%i ", stacks.a[w++]);
-	// printf("\n");
-	// printf("b: \n");
-	// w = 0;
-	// while(stacks.size_b--)
-	// 	printf("%i ", stacks.b[w++]);
-	// printf("\n");

@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hiyamamo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hiyamamo <hiyamamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 13:22:12 by hiyamamo          #+#    #+#             */
-/*   Updated: 2022/06/15 13:22:13 by hiyamamo         ###   ########.fr       */
+/*   Updated: 2022/06/16 12:41:22 by hiyamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-
-//TODO delete
-#include <stdio.h>
 
 # include <unistd.h>
 # include <limits.h>
