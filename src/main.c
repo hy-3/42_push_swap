@@ -6,7 +6,7 @@
 /*   By: hiyamamo <hiyamamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 13:21:02 by hiyamamo          #+#    #+#             */
-/*   Updated: 2022/06/16 13:49:43 by hiyamamo         ###   ########.fr       */
+/*   Updated: 2022/06/16 15:37:03 by hiyamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,44 @@ void	get_max(int *stack, int size, t_max *max)
 {
 	int	i;
 
-	i = 0;
+	max->num = stack[0];
+	max->index = 0;
+	i = 1;
 	while (i < size)
 	{
-		if (i == 0)
-			max->num = stack[i];
 		if (max->num < stack[i])
 		{
 			max->num = stack[i];
 			max->index = i;
+		}
+		i++;
+	}
+}
+
+void	get_second_max(int *stack, int size, t_second_max *second_max, t_max *max)
+{
+	int	i;
+
+	if (size < 2)
+		return ;
+	if (stack[0] != max->num)
+	{
+		second_max->num = stack[0];
+		second_max->index = 0;
+		i = 1;
+	}
+	else
+	{
+		second_max->num = stack[1];
+		second_max->index = 1;
+		i = 2;
+	}
+	while (i < size)
+	{
+		if (second_max->num < stack[i] && stack[i] != max->num)
+		{
+			second_max->num = stack[i];
+			second_max->index = i;
 		}
 		i++;
 	}

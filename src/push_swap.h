@@ -6,12 +6,15 @@
 /*   By: hiyamamo <hiyamamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 13:22:12 by hiyamamo          #+#    #+#             */
-/*   Updated: 2022/06/16 13:53:04 by hiyamamo         ###   ########.fr       */
+/*   Updated: 2022/06/16 18:40:34 by hiyamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+//TODO: delete
+#include <stdio.h>
 
 # include <unistd.h>
 # include <limits.h>
@@ -37,8 +40,15 @@ typedef struct s_max
 	int	index;
 }	t_max;
 
+typedef struct s_second_max
+{
+	int	num;
+	int	index;
+}	t_second_max;
+
 //	src/main.c
 void	get_max(int *stack, int size, t_max *max);
+void	get_second_max(int *stack, int size, t_second_max *second_max, t_max *max);
 //	src/check.c
 int		check_duplicate(int j, t_stacks *stacks, t_int_check *check);
 int		errorcheck_and_prep_stack_a(int argc, char *argv[], t_stacks *stacks);
