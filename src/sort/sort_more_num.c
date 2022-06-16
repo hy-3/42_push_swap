@@ -6,7 +6,7 @@
 /*   By: hiyamamo <hiyamamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 13:52:46 by hiyamamo          #+#    #+#             */
-/*   Updated: 2022/06/16 19:59:40 by hiyamamo         ###   ########.fr       */
+/*   Updated: 2022/06/16 20:18:07 by hiyamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,8 @@ void	move_to_b(t_stacks *stacks, int range)
 				while (stacks->a[0] != tmp)
 					rotate_a(stacks->a, stacks->size_a);
 			else
-			{
 				while (stacks->a[0] != tmp)
-				{
-					if (stacks->a[0] <= range)
-					{
-						push_b(stacks->a, stacks->size_a, stacks->b, stacks->size_b);
-						stacks->size_a--;
-						stacks->size_b++;
-					}
-					else
-						r_rotate_a(stacks->a, stacks->size_a);
-				}
-			}
+					r_rotate_a(stacks->a, stacks->size_a);
 			push_b(stacks->a, stacks->size_a, stacks->b, stacks->size_b);
 			stacks->size_a--;
 			stacks->size_b++;
