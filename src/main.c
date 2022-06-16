@@ -6,7 +6,7 @@
 /*   By: hiyamamo <hiyamamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 13:21:02 by hiyamamo          #+#    #+#             */
-/*   Updated: 2022/06/16 12:41:16 by hiyamamo         ###   ########.fr       */
+/*   Updated: 2022/06/16 12:52:35 by hiyamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	main(int argc, char *argv[])
 	int			range;
 	int			n;
 
-	if (argc == 1)
+	if (argc <= 2)
 		return (0);
 	if (errorcheck_and_prep_stack_a(argc, argv, &stacks) == 1)
 	{
