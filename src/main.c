@@ -6,7 +6,7 @@
 /*   By: hiyamamo <hiyamamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 13:21:02 by hiyamamo          #+#    #+#             */
-/*   Updated: 2022/06/16 13:11:50 by hiyamamo         ###   ########.fr       */
+/*   Updated: 2022/06/16 13:19:07 by hiyamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int argc, char *argv[])
 		write(2, "Error\n", 6);
 		return (1);
 	}
-	if (stacks.size_a == 1)
+	if (stacks.size_a == 1 || check_sorted(stacks.a, stacks.size_a) == 1)
 		return (0);
 	stacks.size_b = 0;
 	get_max(stacks.a, stacks.size_a, &max);

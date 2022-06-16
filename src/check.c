@@ -6,7 +6,7 @@
 /*   By: hiyamamo <hiyamamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 13:20:50 by hiyamamo          #+#    #+#             */
-/*   Updated: 2022/06/16 13:13:29 by hiyamamo         ###   ########.fr       */
+/*   Updated: 2022/06/16 13:19:16 by hiyamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,18 @@ int	errorcheck_and_prep_stack_a(int argc, char *argv[], t_stacks *stacks)
 	}
 	stacks->size_a = j;
 	return (0);
+}
+
+int	check_sorted(int *a, int size_a)
+{
+	int	i;
+
+	i = 0;
+	while (i < (size_a - 1))
+	{
+		if (a[i] > a[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
 }

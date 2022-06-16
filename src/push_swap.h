@@ -6,7 +6,7 @@
 /*   By: hiyamamo <hiyamamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 13:22:12 by hiyamamo          #+#    #+#             */
-/*   Updated: 2022/06/16 13:13:35 by hiyamamo         ###   ########.fr       */
+/*   Updated: 2022/06/16 13:19:23 by hiyamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_max
 //	src/check.c
 int		check_duplicate(int j, t_stacks *stacks, t_int_check *check);
 int		errorcheck_and_prep_stack_a(int argc, char *argv[], t_stacks *stacks);
+int		check_sorted(int *a, int size_a);
 //	src/operation/swap.c
 void	swap_a(int *a, int size_a);
 //	src/operation/push.c
