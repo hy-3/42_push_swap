@@ -39,6 +39,27 @@ void	move_to_b(t_stacks *stacks, int range)
 	}
 }
 
+void	rotate_or_push_second_max(t_stacks *stacks, int flag, \
+									t_max *max, t_second_max *second_max)
+{
+	while (stacks->b[0] != max->num)
+	{
+		if (stacks->b[0] == second_max->num)
+		{
+			push_a(stacks->a, stacks->size_a, stacks->b, stacks->size_b);
+			stacks->size_a++;
+			stacks->size_b--;
+		}
+		else
+		{
+			if(flag == 0)
+				rotate_b(stacks->b, stacks->size_b);
+			else
+				r_rotate_b(stacks->b, stacks->size_b);
+		}
+	}
+}
+
 void	move_back_to_a(t_stacks *stacks)
 {
 	t_max			max;
@@ -49,33 +70,9 @@ void	move_back_to_a(t_stacks *stacks)
 		get_max(stacks->b, stacks->size_b, &max);
 		get_second_max(stacks->b, stacks->size_b, &second_max, &max);
 		if (max.index < (stacks->size_b / 2))
-		{
-			while (stacks->b[0] != max.num)
-			{
-				if (stacks->b[0] == second_max.num)
-				{
-					push_a(stacks->a, stacks->size_a, stacks->b, stacks->size_b);
-					stacks->size_a++;
-					stacks->size_b--;
-				}
-				else
-					rotate_b(stacks->b, stacks->size_b);
-			}
-		}
+			rotate_or_push_second_max(stacks, 0, &max, &second_max);
 		else
-		{
-			while (stacks->b[0] != max.num)
-			{
-				if (stacks->b[0] == second_max.num)
-				{
-					push_a(stacks->a, stacks->size_a, stacks->b, stacks->size_b);
-					stacks->size_a++;
-					stacks->size_b--;
-				}
-				else
-					r_rotate_b(stacks->b, stacks->size_b);
-			}
-		}
+			rotate_or_push_second_max(stacks, 1, &max, &second_max);
 		push_a(stacks->a, stacks->size_a, stacks->b, stacks->size_b);
 		stacks->size_a++;
 		stacks->size_b--;
