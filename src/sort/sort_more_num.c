@@ -85,19 +85,21 @@ void	move_back_to_a(t_stacks *stacks)
 	}
 }
 
-void	sort_more_num(t_stacks *stacks, t_max *max)
+void	sort_more_num(t_stacks *stacks)
 {
-	int	range;
+	int		range;
+	t_max	max;
 
-	range = max->num * 0.09;
-	if (max->num < 10)
+	get_max(stacks->a, stacks->size_a, &max);
+	range = max.num * 0.09;
+	if (max.num < 10)
 		move_to_b(stacks, 10);
 	else
 	{
-		while (range <= max->num)
+		while (range <= max.num)
 		{
 			move_to_b(stacks, range);
-			range += max->num * 0.09;
+			range += max.num * 0.09;
 		}
 		move_to_b(stacks, range);
 	}

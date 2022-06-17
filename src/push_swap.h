@@ -46,17 +46,24 @@ typedef struct s_second_max
 	int	index;
 }	t_second_max;
 
-//	src/main.c
-void	get_max(int *stack, int size, t_max *max);
-void	get_second_max(int *stack, int size, t_second_max *second_max, t_max *max);
+typedef struct s_min
+{
+	int	num;
+	int	index;
+}	t_min;
+
 //	src/check.c
 int		check_duplicate(int j, t_stacks *stacks, t_int_check *check);
 int		errorcheck_and_prep_stack_a(int argc, char *argv[], t_stacks *stacks);
 int		check_sorted(int *a, int size_a);
+//	src/search_max_min.c
+void	get_max(int *stack, int size, t_max *max);
+void	get_second_max(int *stack, int size, t_second_max *second_max, t_max *max);
+void	get_min(int *stack, int size, t_min *min);
 //	src/sort/sort_few_num.c
-void	sort_few_num(t_stacks *stacks, t_max *max);
+void	sort_few_num(t_stacks *stacks);
 //	src/sort/sort_more_num.c
-void	sort_more_num(t_stacks *stacks, t_max *max);
+void	sort_more_num(t_stacks *stacks);
 //	src/operation/swap.c
 void	swap_a(int *a, int size_a);
 //	src/operation/push.c
