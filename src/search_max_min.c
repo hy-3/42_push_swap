@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   search_max_min.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hiyamamo <hiyamamo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/17 13:07:20 by hiyamamo          #+#    #+#             */
+/*   Updated: 2022/06/17 13:08:02 by hiyamamo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	get_max(int *stack, int size, t_max *max)
@@ -18,7 +30,8 @@ void	get_max(int *stack, int size, t_max *max)
 	}
 }
 
-void	get_second_max(int *stack, int size, t_second_max *second_max, t_max *max)
+void	get_second_max(int *stack, int size, \
+						t_second_max *second_max, t_max *max)
 {
 	int	i;
 

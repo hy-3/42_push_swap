@@ -6,7 +6,7 @@
 /*   By: hiyamamo <hiyamamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 13:52:46 by hiyamamo          #+#    #+#             */
-/*   Updated: 2022/06/16 20:18:07 by hiyamamo         ###   ########.fr       */
+/*   Updated: 2022/06/17 13:08:21 by hiyamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	rotate_or_push_second_max(t_stacks *stacks, int flag, \
 		}
 		else
 		{
-			if(flag == 0)
+			if (flag == 0)
 				rotate_b(stacks->b, stacks->size_b);
 			else
 				r_rotate_b(stacks->b, stacks->size_b);

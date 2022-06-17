@@ -6,15 +6,12 @@
 /*   By: hiyamamo <hiyamamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 13:22:12 by hiyamamo          #+#    #+#             */
-/*   Updated: 2022/06/16 20:17:54 by hiyamamo         ###   ########.fr       */
+/*   Updated: 2022/06/17 13:07:47 by hiyamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-
-//TODO: delete
-#include <stdio.h>
 
 # include <unistd.h>
 # include <limits.h>
@@ -58,7 +55,8 @@ int		errorcheck_and_prep_stack_a(int argc, char *argv[], t_stacks *stacks);
 int		check_sorted(int *a, int size_a);
 //	src/search_max_min.c
 void	get_max(int *stack, int size, t_max *max);
-void	get_second_max(int *stack, int size, t_second_max *second_max, t_max *max);
+void	get_second_max(int *stack, int size, \
+						t_second_max *second_max, t_max *max);
 void	get_min(int *stack, int size, t_min *min);
 //	src/sort/sort_few_num.c
 void	sort_few_num(t_stacks *stacks);
