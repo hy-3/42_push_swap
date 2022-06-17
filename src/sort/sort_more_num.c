@@ -92,8 +92,8 @@ void	sort_more_num(t_stacks *stacks)
 
 	get_max(stacks->a, stacks->size_a, &max);
 	range = max.num * 0.09;
-	if (max.num < 10)
-		move_to_b(stacks, 10);
+	if (max.num < 12)
+		move_to_b(stacks, 12);
 	else
 	{
 		while (range <= max.num)
